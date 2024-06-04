@@ -44,21 +44,24 @@ function mostrarProductos()
 }
 
 
-function agregarCarro(){
+function agregarCarro()
+{
     carroSinRepetidos[(this.getAttribute("marcador")-1)].cantidad++;
     calcularTotal();
     mostrarEnCarro();
 }
 
 
-function eliminarProducto(index) {
+function eliminarProducto(index) 
+{
     carroSinRepetidos[index].cantidad = 0;
     calcularTotal();
     mostrarEnCarro();
 }
 
 
-function calcularTotal(){
+function calcularTotal()
+{
     var elTotal = 0;
     for(var p of carroSinRepetidos)
     {
@@ -68,28 +71,31 @@ function calcularTotal(){
 }
 
 
-function mostrarEnCarro() {
+function mostrarEnCarro() 
+{
     listaCarro.textContent = "";
     for (var i = 0; i < carroSinRepetidos.length; i++) {
         var objP = carroSinRepetidos[i];
         if(objP.cantidad > 0){
             var nodoProductoEnCarro = document.createElement("li");
-            nodoProductoEnCarro.classList.add("list-group-item", "d-flex", "justify-content-between","text-right", "mx-2");
+            nodoProductoEnCarro.classList.add("list-group-item", "d-flex", 
+            "justify-content-between","text-right", "mx-2");
             nodoProductoEnCarro.textContent = objP.nombre + " - $" + objP.precio;
             
 
             nodoProductoEnCarro.textContent = objP.nombre + " - $" + objP.precio + " x " + objP.cantidad;
 
-            
             var botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
             botonEliminar.classList.add("btn", "btn-danger", "btn-sm", "mx-2");
             botonEliminar.onclick = (function(index) 
             {
-                return function() {
+                return function() 
+                {
                     eliminarProducto(index);
                 }
             })(i);
+
 
             var elboton = document.createElement('button');
             elboton.classList.add('btn', 'btn-danger', "mx-5");
@@ -129,4 +135,3 @@ function limpiarCarrito()
     // Muestra el carrito actualizado
     mostrarEnCarro();
 }
-XMLDocument
